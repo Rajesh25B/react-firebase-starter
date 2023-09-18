@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { auth } from "../config/firebase";
-import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth, googleProvider } from "../config/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signOut,
+  signInWithPopup,
+} from "firebase/auth";
 
 export default function Auth() {
   const [email, setEmail] = useState("");
@@ -24,6 +28,15 @@ export default function Auth() {
 
   //   to check the current logged in user
   //   console.log(auth?.currentUser?.email);
+  //   console.log(auth?.currentUser?.providerData[0].displayName);
+
+  const handleSigninWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div>
@@ -41,7 +54,10 @@ export default function Auth() {
       {auth?.currentUser?.email ? (
         <button onClick={handleSignOut}>Sign out</button>
       ) : (
-        <button onClick={handleSignIn}>Sign in</button>
+        <>
+          <button onClick={handleSignIn}>Sign in</button>
+          <button onClick={handleSigninWithGoogle}>Signin With Google</button>
+        </>
       )}
     </div>
   );
