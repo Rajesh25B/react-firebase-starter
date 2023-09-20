@@ -33,7 +33,7 @@ export default function ListMovies() {
       }
     };
     getAllMovies();
-  }, []);
+  }, [moviesList]);
   //   console.log(moviesList);
 
   const handleDelete = async (id) => {

@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div>Firebase Starter</div>
-      {/* <Auth /> */}
+      <Auth />
 
       <CreateMovie />
       <ListMovies />

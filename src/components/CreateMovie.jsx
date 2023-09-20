@@ -1,6 +1,6 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
-import { db } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 
 export default function CreateMovie() {
   const [title, setTitle] = useState("");
@@ -17,6 +17,7 @@ export default function CreateMovie() {
         title: title,
         rating: rating,
         isReleased: released,
+        userId: auth?.currentUser?.uid,
       });
     } catch (error) {
       console.error(error);
