@@ -51,7 +51,7 @@ export default function Auth() {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      {auth?.currentUser?.email ? (
+      {auth?.currentUser?.uid ? (
         <button onClick={handleSignOut}>Sign out</button>
       ) : (
         <>
